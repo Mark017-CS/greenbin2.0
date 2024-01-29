@@ -195,21 +195,21 @@ if (!$user_data) {
                 <div class="form-group col-6">
                   <label for="exampleInputEmail1">Profile Picture</label>
                   <div class="input-container">
-                    <input type="file" class="form-control" name="profilepic">
+                    <input type="file" class="form-control" name="profilepic" required>
                     <i class="fas fa-image icon"></i>
                   </div>
                 </div>
                 <div class="form-group col-6">
                   <label for="exampleInputEmail1">Full Name</label>
-                  <input type="text" class="form-control" name="fullname">
+                  <input type="text" class="form-control" name="fullname" required>
                 </div>
                 <div class="form-group col-6">
                   <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" name="email">
+                  <input type="email" class="form-control" name="email" required>
                 </div>
                 <div class="form-group col-6">
                   <label for="exampleInputEmail1">Password</label>
-                  <input type="text" class="form-control" name="password">
+                  <input type="text" class="form-control" name="password" required>
                 </div>
               </div>
               <div class="card-footer">

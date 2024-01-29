@@ -260,7 +260,7 @@ if (!$admin_data) {
                     <div class="form-group ">
                       <label for="exampleInputEmail1">Choose Background Image</label>
                       <div class="input-container">
-                        <input type="file" class="form-control" name="background">
+                        <input type="file" class="form-control" name="background" required>
                         <i class="fas fa-image icon"></i>
                       </div>
                     </div>
@@ -338,17 +338,17 @@ if (!$admin_data) {
                     <div class="form-group ">
                       <label for="exampleInputEmail1">Title 1</label>
                       <input type="text" class="form-control" name="home_title" id="exampleInputEmail1"
-                        placeholder="Enter Title 1">
+                        placeholder="Enter Title 1" required>
                     </div>
                     <div class="form-group ">
                       <label for="exampleInputPassword1">Title 2</label>
                       <input type="text" class="form-control" name="home_title2" id="exampleInputPassword1"
-                        placeholder="Enter Title 2">
+                        placeholder="Enter Title 2" required>
                     </div>
                     <div class="form-group ">
                       <label for="exampleInputPassword1">Description</label>
                       <input type="text" class="form-control" name="home_desc" id="exampleInputPassword1"
-                        placeholder="Enter Description">
+                        placeholder="Enter Description" required>
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -423,7 +423,7 @@ if (!$admin_data) {
                     <div class="form-group ">
                       <label for="exampleInputEmail1">Twitter</label>
                       <input type="text" class="form-control" name="twitter" id="exampleInputEmail1"
-                        placeholder="Enter username">
+                        placeholder="Enter username" >
                     </div>
                     <div class="form-group ">
                       <label for="exampleInputPassword1">Facebook</label>
@@ -528,21 +528,21 @@ if (!$admin_data) {
                       <div class="form-group ">
                         <label for="exampleInputEmail1">About Image</label>
                         <div class="input-container">
-                          <input type="file" class="form-control" name="profile">
+                          <input type="file" class="form-control" name="profile" required>
                           <i class="fas fa-image icon"></i>
                         </div>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputPassword1">About Description</label><br>
-                        <textarea cols="50" name="about_desc"></textarea>
+                        <textarea cols="50" name="about_desc" required></textarea>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputPassword1">Mision</label><br>
-                        <textarea cols="50" name="mission"></textarea>
+                        <textarea cols="50" name="mission" required></textarea>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputPassword1">Vision</label><br>
-                        <textarea cols="50" name="vision"></textarea>
+                        <textarea cols="50" name="vision" required></textarea>
                       </div>
                     </div>
                     <div class="card-footer">
@@ -629,22 +629,22 @@ if (!$admin_data) {
                       <div class="card-body">
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Name</label>
-                          <input type="text" class="form-control" name="Name">
+                          <input type="text" class="form-control" name="Name" required>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Description</label><br>
-                          <textarea cols="50" name="Description"></textarea>
+                          <textarea cols="50" name="Description" required></textarea>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Developer's Image</label>
                           <div class="input-container">
-                            <input type="file" class="form-control" name="profile">
+                            <input type="file" class="form-control" name="profile" required>
                             <i class="fas fa-image icon"></i>
                           </div>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputPassword1">Facebook Username</label>
-                          <input type="text" class="form-control" name="social">
+                          <input type="text" class="form-control" name="social" required>
                         </div>
                       </div>
                       <div class="card-footer">
@@ -665,26 +665,26 @@ if (!$admin_data) {
                       <div class="card-body">
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Developer's ID</label>
-                          <input type="text" class="form-control" name="id">
+                          <input type="text" class="form-control" name="id" required>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Name</label>
-                          <input type="text" class="form-control" name="Name">
+                          <input type="text" class="form-control" name="Name" required>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Description</label><br>
-                          <textarea cols="50" name="Description"></textarea>
+                          <textarea cols="50" name="Description" required></textarea>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Developer's Image</label>
                           <div class="input-container">
-                            <input type="file" class="form-control" name="profile">
+                            <input type="file" class="form-control" name="profile" required>
                             <i class="fas fa-image icon"></i>
                           </div>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputPassword1">Facebook Username</label>
-                          <input type="text" class="form-control" name="social">
+                          <input type="text" class="form-control" name="social" required>
                         </div>
                       </div>
                       <!-- /.card-body -->
@@ -953,7 +953,7 @@ if (!$admin_data) {
     <div class="card-body">
         <div class="form-group">
             <label for="item">Item</label>
-            <input type="text" class="form-control" name="item" id="item" placeholder="Enter item">
+            <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
         </div>
         <div class="form-group">
             <label for="weight">Weight</label>
@@ -1047,11 +1047,11 @@ if (!$admin_data) {
                   <div class="card-body">
                     <div class="form-group ">
                       <label for="item">Waste ID</label>
-                      <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID">
+                      <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" required>
                     </div>
                     <div class="form-group ">
                       <label for="item">Item</label>
-                      <input type="text" class="form-control" name="item" id="item" placeholder="Enter item">
+                      <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
                     </div>
                     <div class="form-group ">
                       <label for="weight">Weight</label>
@@ -1128,7 +1128,7 @@ if (!$admin_data) {
                   <div class="card-body">
                     <div class="form-group ">
                       <label for="item">Waste ID</label>
-                      <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID">
+                      <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" required>
                     </div>
                     <div class="form-group ">
                       <label for="category">Category</label>
@@ -1232,26 +1232,26 @@ if (!$admin_data) {
                     <div class="card-body">
                       <div class="form-group ">
                         <label for="exampleInputEmail1">User ID</label>
-                        <input type="text" class="form-control" name="user_id">
+                        <input type="text" class="form-control" name="user_id" required>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Fullname</label>
-                        <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
+                        <input type="text" class="form-control" name="fullname" id="exampleInputEmail1" required>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Profile</label>
                         <div class="input-container">
-                          <input type="file" class="form-control" name="profile">
+                          <input type="file" class="form-control" name="profile" required>
                           <i class="fas fa-image icon"></i>
                         </div>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                        <input type="text" class="form-control" name="email" id="exampleInputEmail1" required>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Password</label>
-                        <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                        <input type="text" class="form-control" name="password" id="exampleInputEmail1" required>
                       </div>
                     </div>
                     <!-- /.card-body -->
@@ -1271,22 +1271,22 @@ if (!$admin_data) {
                     <div class="card-body">
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Fullname</label>
-                        <input type="text" class="form-control" name="fullname" id="exampleInputEmail1">
+                        <input type="text" class="form-control" name="fullname" id="exampleInputEmail1" required>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Profile</label>
                         <div class="input-container">
-                          <input type="file" class="form-control" name="profile">
+                          <input type="file" class="form-control" name="profile" required>
                           <i class="fas fa-image icon"></i>
                         </div>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                        <input type="text" class="form-control" name="email" id="exampleInputEmail1" required>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputEmail1">Password</label>
-                        <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                        <input type="text" class="form-control" name="password" id="exampleInputEmail1" required>
                       </div>
                     </div>
                     <div class="card-footer">
@@ -1364,22 +1364,22 @@ if (!$admin_data) {
                 <div class="card-body">
                   <div class="form-group ">
                     <label for="exampleInputEmail1">Name</label>
-                    <input type="text" class="form-control" name="name" id="exampleInputEmail1">
+                    <input type="text" class="form-control" name="name" id="exampleInputEmail1" required>
                   </div>
                   <div class="form-group ">
                     <label for="exampleInputEmail1">Profile</label>
                     <div class="input-container">
-                      <input type="file" class="form-control" name="profile">
+                      <input type="file" class="form-control" name="profile" required>
                       <i class="fas fa-image icon"></i>
                     </div>
                   </div>
                   <div class="form-group ">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                    <input type="text" class="form-control" name="email" id="exampleInputEmail1" required>
                   </div>
                   <div class="form-group ">
                     <label for="exampleInputEmail1">Password</label>
-                    <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                    <input type="text" class="form-control" name="password" id="exampleInputEmail1" required>
                   </div>
                 </div>
                 <div class="card-footer">
