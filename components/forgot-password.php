@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Art Abode | Forgot Password</title>
+    <title>GreenBin | Forgot Password</title>
     <link href="../images/logo.png" rel="icon">
     <link href="../images/logo.png" rel="apple-touch-icon">
     <!-- Tell the browser to be responsive to screen width -->

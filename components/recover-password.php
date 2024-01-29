@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Art Abode | Recover Password</title>
+  <title>GreenBin | Recover Password</title>
   <link href="../images/logo.png" rel="icon">
   <link href="../images/logo.png" rel="apple-touch-icon">
   <!-- Tell the browser to be responsive to screen width -->
