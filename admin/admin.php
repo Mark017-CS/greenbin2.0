@@ -895,6 +895,9 @@ if (!$admin_data) {
                           <th>Weight</th>
                           <th>Waste Type</th>
                           <th>Expiration Date</th>
+                          <th>Contact</th>
+                          <th>Category</th>
+                          <th>Status</th>
                           <th style="width: 40px">Action</th>
                         </tr>
                       </thead>
@@ -922,6 +925,15 @@ if (!$admin_data) {
                             <?= $pii['xdate'] ?>
                             </td>
                             <td>
+                            <?= $pii['contact'] ?>
+                            </td>
+                            <td>
+                            <?= $pii['category'] ?>
+                            </td>
+                            <td>
+                            <?= $pii['Status'] ?>
+                            </td>
+                            <td>
                               <a href="include/deletewaste.php?id=<?= $pii['id'] ?>">Delete</a>
                             </td>
                           </tr>
@@ -932,6 +944,102 @@ if (!$admin_data) {
                     </table>
                   </div>
                 </div>
+                <div class="card-header">
+                    <h3 class="card-title">Add Waste</h3>
+                  </div>
+                  <div class="card">
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data" class="attractive-form" onsubmit="return validateForm()">
+    <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
+    <div class="card-body">
+        <div class="form-group">
+            <label for="item">Item</label>
+            <input type="text" class="form-control" name="item" id="item" placeholder="Enter item">
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight</label>
+            <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight in kg" required pattern="[0-9]+" title="Input must be numerical">
+            <div class="invalid-feedback">Please enter a numerical value for weight.</div>
+        </div>
+        <div class="form-group">
+            <label for="wasteType">Waste Type</label>
+            <select class="form-control" id="wasteType" name="wasteType" required>
+                <option value="" disabled selected>Select Waste Type</option>
+                <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
+                <option value="Meat and Bones">Meat and Bones</option>
+                <option value="Seeds and Nuts">Seeds and Nuts</option>
+                <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
+                <option value="Spoiled and Unusable">Spoiled and Unusable</option>
+            </select>
+        </div>
+        <div class="form-group ">
+                      <label for="xdate">Expiration Date</label>
+                      <div class="row">
+                        <div class="col">
+                          <select class="form-control" name="year" required>
+                            <option value="" disabled selected>Year</option>
+                            <?php
+                            // Loop to generate options for years (from 2015 to 2050)
+                            for ($year = 2015; $year <= 2050; $year++) {
+                              echo "<option value='$year'>$year</option>";
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col">
+                          <select class="form-control" name="month" required>
+                            <option value="" disabled selected>Month</option>
+                            <?php
+                            // Loop to generate options for months
+                            for ($i = 1; $i <= 12; $i++) {
+                              $month = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                              echo "<option value='$month'>$month</option>";
+                            }
+                            ?>
+                          </select>
+                        </div>
+                        <div class="col">
+                          <select class="form-control" name="day" required>
+                            <option value="" disabled selected>Day</option>
+                            <?php
+                            // Loop to generate options for days
+                            for ($i = 1; $i <= 31; $i++) {
+                              $day = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                              echo "<option value='$day'>$day</option>";
+                            }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category" required>
+                <option value="" disabled selected>Select Category</option>
+                <option value="Usable">Usable</option>
+                <option value="Unusable">Unusable</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" name="status" required>
+                <option value="" disabled selected>Select Status</option>
+                <option value="Pending">Pending</option>
+                <option value="In Process">In Process</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Donated">Donated</option>
+            </select>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="submit" name="add-waste" class="btn btn-primary">Add Waste</button>
+    </div>
+</form>
+
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title">Update Waste</h3>
+                  </div>
+                  <div class="card">
                 <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
                   class="attractive-form" onsubmit="return validateForm()">
                   <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
@@ -1008,7 +1116,45 @@ if (!$admin_data) {
                     <button type="submit" name="update-waste" class="btn btn-primary">Update Waste</button>
                   </div>
                 </form>
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title">Validate Waste</h3>
+                  </div>
+                  <div class="card">
+                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
+                  class="attractive-form" onsubmit="return validateForm()">
+                  <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
+                  <!-- Use PHP to echo the waste ID here -->
+                  <div class="card-body">
+                    <div class="form-group ">
+                      <label for="item">Waste ID</label>
+                      <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID">
+                    </div>
+                    <div class="form-group ">
+                      <label for="category">Category</label>
+                      <select class="form-control" id="category" name="category" required>
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="Usable">Usable</option>
+                        <option value="Unusable">Unusable</option>
+                      </select>
+                    </div>
+                    <div class="form-group ">
+                      <label for="status">Status</label>
+                      <select class="form-control" id="status" name="status" required>
+                        <option value="" disabled selected>Select Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Process">In Process</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Donated">Donated</option>
+                      </select>
+                    </div>
 
+                  </div>
+                  <div class="card-footer">
+                    <button type="submit" name="validate-waste" class="btn btn-primary">Validate Waste</button>
+                  </div>
+                </form>
+                </div>
               </div>
             <?php
             } elseif (isset($_GET['accountsetting'])) {

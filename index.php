@@ -328,6 +328,8 @@ $home = mysqli_fetch_array($resultHome);
                   <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Expiration
                     Date</th>
                   <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Contact</th>
+                  <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Category</th>
+                  <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -353,8 +355,14 @@ $home = mysqli_fetch_array($resultHome);
                     <td style="border-right: 1px solid #1DB954;">
                       <?= $pii['xdate'] ?>
                     </td>
-                    <td>
+                    <td style="border-right: 1px solid #1DB954;">
                       <?= $pii['contact'] ?>
+                    </td>
+                    <td style="border-right: 1px solid #1DB954;">
+                      <?= $pii['category'] ?>
+                    </td>
+                    <td style="border-right: 1px solid #1DB954;">
+                      <?= $pii['Status'] ?>
                     </td>
                   </tr>
                   <?php
