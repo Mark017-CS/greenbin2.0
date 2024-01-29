@@ -156,11 +156,8 @@ $home = mysqli_fetch_array($resultHome);
   <header class="header " id="header">
     <div class="container">
       <h1><a href="index.php"><b style="color: #1DB954; font-style: italic; ">
-      <img
-          src="images/logo.png"
-          alt="Green Bin"
-          style="width: 50px; height: 60px"
-        />  <?= $home['home_title'] ?>
+            <img src="images/logo.png" alt="Green Bin" style="width: 50px; height: 60px" />
+            <?= $home['home_title'] ?>
           </b><b style="color: #FFF;">
             <?= $home['home_title2'] ?>
           </b></a></a></h1>
@@ -328,7 +325,8 @@ $home = mysqli_fetch_array($resultHome);
                   <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Expiration
                     Date</th>
                   <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Contact</th>
-                  <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Category</th>
+                  <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Category
+                  </th>
                   <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Status</th>
                 </tr>
               </thead>
@@ -509,7 +507,8 @@ $home = mysqli_fetch_array($resultHome);
                   <?= $orgs['name'] ?>
                 </h4>
                 <p style="font-style: italic;">
-                  (Waste Collecting: <?= $orgs['wasteType'] ?>)
+                  (Waste Collecting:
+                  <?= $orgs['wasteType'] ?>)
                 </p>
                 <p>
                   <?= $orgs['number'] ?>
@@ -608,7 +607,7 @@ $home = mysqli_fetch_array($resultHome);
         <h2>Feedback</h2>
         <p>Feedback Form</p>
       </div>
-      <form action="" method="POST" class="mt-4">
+      <form id="feedbackForm" class="mt-4">
         <div class="row">
           <div class="col-md-6 form-group mt-3">
             <input type="text" name="fullName" class="form-control gray-background" placeholder="Your Name" required>
@@ -617,7 +616,7 @@ $home = mysqli_fetch_array($resultHome);
             <input type="email" class="form-control gray-background" name="email" placeholder="Your Email" required>
           </div>
           <div class="col-md-6 form-group mt-3">
-            <input type="number" class="form-control gray-background" name="mobileNumber" placeholder="Mobile Number"
+            <input type="tel" class="form-control gray-background" name="mobileNumber" placeholder="Mobile Number"
               required>
           </div>
           <div class="col-md-6 form-group mt-3">
@@ -629,12 +628,12 @@ $home = mysqli_fetch_array($resultHome);
             required></textarea>
         </div>
         <div class="text-center">
-          <a href="mailto:<?= $contact['email'] ?>?subject=Contact%20Form%20Submission&body=Name%3A%20%0DEmail%3A%20%0DMobile%20Number%3A%20%0DSubject%3A%20%0D%0DYour%20Message%3A%20%0D"
-            class="btn btn-primary mt-3">
-            Send Email
-          </a>
+          <button type="button" class="btn btn-primary mt-3" onclick="validateAndSendEmail()">Send Email</button>
         </div>
       </form>
+
+
+
   </section>
   <!-- End Contact Section -->
 
@@ -654,6 +653,32 @@ $home = mysqli_fetch_array($resultHome);
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script>
+    function validateAndSendEmail() {
+      var fullName = document.getElementsByName('fullName')[0].value.trim();
+      var email = document.getElementsByName('email')[0].value.trim();
+      var mobileNumber = document.getElementsByName('mobileNumber')[0].value.trim();
+      var subject = document.getElementsByName('subject')[0].value.trim();
+      var message = document.getElementsByName('message')[0].value.trim();
+
+      if (fullName === '' || email === '' || mobileNumber === '' || subject === '' || message === '') {
+        alert("Please fill out all required fields.");
+        return;
+      }
+
+      // Construct mailto link with prefilled fields
+      var mailtoLink = "mailto:" + encodeURIComponent("greenbin2.0@gmail.com") +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent("Name: " + fullName + "\n" +
+          "Email: " + email + "\n" +
+          "Mobile Number: " + mobileNumber + "\n" +
+          "Subject: " + subject + "\n\n" +
+          "Message: " + message);
+
+      // Open default email client
+      window.location.href = mailtoLink;
+    }
+  </script>
   <script>
     function toggleFilterOptions() {
       var filterOptions = document.querySelector(".filter-options");

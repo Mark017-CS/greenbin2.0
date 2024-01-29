@@ -101,7 +101,7 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
                     </div>
-                    <button name="submit" class="btn btn-primary btn-block" type="submit">Send Reset Link</button>
+                    <button name="submit" class="btn btn-primary btn-block" type="submit">Proceed</button>
                 </form>
                 <div class="social-icons">
                     <p><br><br>Back to <a href="login.php">Login</a>.</p>
