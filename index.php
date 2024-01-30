@@ -295,26 +295,27 @@ $home = mysqli_fetch_array($resultHome);
 
   <?php
 
-  // Check if the user is logged in (you need to have a variable indicating the user's login status)
-  $userLoggedIn = isset($_SESSION['isUserLoggedIn']) && $_SESSION['isUserLoggedIn'];
-  ?>
+// Check if the user is logged in (you need to have a variable indicating the user's login status)
+$userLoggedIn = isset($_SESSION['isUserLoggedIn']) && $_SESSION['isUserLoggedIn'];
+?>
 
-  <!-- ======= wastes Section ======= -->
-  <section id="food" class="services">
-    <div class="container">
-      <div class="section-title">
-        <h2>Food Wastes</h2>
-        <p>Food Wastes</p>
-        <input type="text" id="myInput" placeholder="Search for items..."
-          style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 500px; font-size: 16px; margin-left: 760px; margin-bottom: 20px;">
-      </div>
+<!-- ======= wastes Section ======= -->
+<section id="food" class="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>Food Wastes</h2>
+      <p>Food Wastes</p>
+      <input type="text" id="myInput" placeholder="Search for items..."
+        style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%; max-width: 500px; font-size: 16px; margin-bottom: 20px;">
+    </div>
 
-      <div class="card card-primary col-lg-12">
-        <div class="card">
-          <div class="card-body p-0">
-            <table class="table" id="myTable" style="border: #1DB954;">
+    <div class="card card-primary">
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="myTable">
               <thead>
-                <tr>
+              <tr>
                   <th
                     style="text-align: center; border-right: 1px solid green; width: 10px; background-color: #1DB954;">#
                   </th>
@@ -325,10 +326,7 @@ $home = mysqli_fetch_array($resultHome);
                   <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Expiration
                     Date</th>
                   <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Contact</th>
-                  <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Category
-                  </th>
-                  <th style="text-align: center; border-right: 1px solid green; background-color: #1DB954;">Status</th>
-                </tr>
+                </tr> 
               </thead>
               <tbody>
                 <?php
@@ -337,31 +335,13 @@ $home = mysqli_fetch_array($resultHome);
                 $cc = 1;
                 while ($pii = mysqli_fetch_array($rr)) {
                   ?>
-                  <tr style="border-bottom: 1px solid #1DB954;">
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $cc ?>
-                    </td>
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $pii['item'] ?>
-                    </td>
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $pii['weight'] ?> kg
-                    </td>
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $pii['wasteType'] ?>
-                    </td>
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $pii['xdate'] ?>
-                    </td>
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $pii['contact'] ?>
-                    </td>
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $pii['category'] ?>
-                    </td>
-                    <td style="border-right: 1px solid #1DB954;">
-                      <?= $pii['Status'] ?>
-                    </td>
+                  <tr>
+                    <td><?= $cc ?></td>
+                    <td><?= $pii['item'] ?></td>
+                    <td><?= $pii['weight'] ?> kg</td>
+                    <td><?= $pii['wasteType'] ?></td>
+                    <td><?= $pii['xdate'] ?></td>
+                    <td><?= $pii['contact'] ?></td>
                   </tr>
                   <?php
                   $cc++;
@@ -372,86 +352,86 @@ $home = mysqli_fetch_array($resultHome);
           </div>
         </div>
       </div>
-      <?php if ($userLoggedIn): ?>
-        <form role="form" action="include/user.php" method="post" enctype="multipart/form-data" class="attractive-form"
-          onsubmit="return validateForm()">
-          <div class="card-body">
-            <div class="form-group">
-              <label for="item">Item</label>
-              <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
-            </div>
-            <div class="form-group">
-              <label for="weight">Weight</label>
-              <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight" required
-                pattern="[0-9]+" title="Input must be numerical">
-
-              <div class="invalid-feedback">Please enter a numerical value for weight.</div>
-            </div>
-            <div class="form-group">
-              <label for="wasteType">Waste Type</label>
-              <select class="form-control" id="wasteType" name="wasteType" required>
-                <option value="" disabled selected>Select Waste Type</option>
-                <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
-                <option value="Meat and Bones">Meat and Bones</option>
-                <option value="Seeds and Nuts">Seeds and Nuts</option>
-                <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
-                <option value="Spoiled and Unusable">Spoiled and Unusable</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="xdate">Expiration Date</label>
-              <div class="row">
-                <div class="col">
-                  <select class="form-control" name="year" required>
-                    <option value="" disabled selected>Year</option>
-                    <?php
-                    // Loop to generate options for years (from 2015 to 2050)
-                    for ($year = 2015; $year <= 2050; $year++) {
-                      echo "<option value='$year'>$year</option>";
-                    }
-                    ?>
-                  </select>
-                </div>
-                <div class="col">
-                  <select class="form-control" name="month" required>
-                    <option value="" disabled selected>Month</option>
-                    <?php
-                    // Loop to generate options for months
-                    for ($i = 1; $i <= 12; $i++) {
-                      $month = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
-                      echo "<option value='$month'>$month</option>";
-                    }
-                    ?>
-                  </select>
-                </div>
-                <div class="col">
-                  <select class="form-control" name="day" required>
-                    <option value="" disabled selected>Day</option>
-                    <?php
-                    // Loop to generate options for days
-                    for ($i = 1; $i <= 31; $i++) {
-                      $day = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
-                      echo "<option value='$day'>$day</option>";
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="card-footer">
-            <button type="submit" name="add-waste" class="btn btn-primary">Add Waste</button>
-          </div>
-        </form>
-
-      <?php endif; ?>
-
     </div>
 
+    <?php if ($userLoggedIn): ?>
+    <form role="form" action="include/user.php" method="post" enctype="multipart/form-data" class="attractive-form"
+      onsubmit="return validateForm()">
+      <div class="card" style="background: rgba(0, 0, 0, 0.9); opacity: 0.8;">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="item">Item</label>
+            <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
+          </div>
+          <div class="form-group">
+            <label for="weight">Weight</label>
+            <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight" required
+              pattern="[0-9]+" title="Input must be numerical">
+            <div class="invalid-feedback">Please enter a numerical value for weight.</div>
+          </div>
+          <div class="form-group">
+            <label for="wasteType">Waste Type</label>
+            <select class="form-control" id="wasteType" name="wasteType" required>
+              <option value="" disabled selected>Select Waste Type</option>
+              <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
+              <option value="Meat and Bones">Meat and Bones</option>
+              <option value="Seeds and Nuts">Seeds and Nuts</option>
+              <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
+              <option value="Spoiled and Unusable">Spoiled and Unusable</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="xdate">Expiration Date</label>
+            <div class="row">
+              <div class="col">
+                <select class="form-control" name="year" required>
+                  <option value="" disabled selected>Year</option>
+                  <?php
+                  // Loop to generate options for years (from 2015 to 2050)
+                  for ($year = 2015; $year <= 2050; $year++) {
+                    echo "<option value='$year'>$year</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="col">
+                <select class="form-control" name="month" required>
+                  <option value="" disabled selected>Month</option>
+                  <?php
+                  // Loop to generate options for months
+                  for ($i = 1; $i <= 12; $i++) {
+                    $month = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                    echo "<option value='$month'>$month</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="col">
+                <select class="form-control" name="day" required>
+                  <option value="" disabled selected>Day</option>
+                  <?php
+                  // Loop to generate options for days
+                  for ($i = 1; $i <= 31; $i++) {
+                    $day = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                    echo "<option value='$day'>$day</option>";
+                  }
+                  ?>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <button type="submit" name="add-waste" class="btn btn-primary">Add Waste</button>
+        </div>
+      </div>
+    </form>
+    <?php endif; ?>
 
-  </section>
-  <!-- End wastes Section -->
+  </div>
+</section>
+<!-- End wastes Section -->
+
 
 
   <!-- ======= Orgs Section ======= -->

@@ -300,8 +300,6 @@ if (isset($_POST['add-waste'])) {
   $item = $_POST['item'];
   $weight = $_POST['weight'];
   $type = $_POST['wasteType'];
-  $category = $_POST['category'];
-  $status = $_POST['status'];
 
   // Concatenate selected values to form the date in YYYY-MM-DD format
   $xdate = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
@@ -316,8 +314,8 @@ if (isset($_POST['add-waste'])) {
     $contactOrg = $orgRow['name'];
 
     $query = "INSERT INTO waste (item, weight, wasteType, xdate, category, status, contact) ";
-    $query .= "VALUES ('$item', '$weight', '$type', '$xdate', '$category', '$status', '$contactOrg') ";
-    $query .= "ON DUPLICATE KEY UPDATE item='$item', weight='$weight', wasteType='$type', xdate='$xdate', category='$category', status='$status', contact='$contactOrg'";
+    $query .= "VALUES ('$item', '$weight', '$type', '$xdate', '$contactOrg') ";
+    $query .= "ON DUPLICATE KEY UPDATE item='$item', weight='$weight', wasteType='$type', xdate='$xdate', contact='$contactOrg'";
 
     $run = mysqli_query($db, $query);
     if ($run) {
@@ -342,22 +340,6 @@ if (isset($_POST['update-waste'])) {
   $xdate = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
 
   $query = "UPDATE waste SET item='$item', weight='$weight', wasteType='$type', xdate='$xdate' WHERE id='$waste_id'";
-
-  $run = mysqli_query($db, $query);
-  if ($run) {
-    echo "<script>window.location.href='../admin.php?wastesetting=true';</script>";
-    exit();
-  }
-}
-
-// Validate waste
-if (isset($_POST['validate-waste'])) {
-  $waste_id = $_POST['id'];
-  $category = $_POST['category'];
-  $status = $_POST['status'];
-
-
-  $query = "UPDATE waste SET category='$category', status='$status' WHERE id='$waste_id'";
 
   $run = mysqli_query($db, $query);
   if ($run) {

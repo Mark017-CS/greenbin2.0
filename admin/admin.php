@@ -896,8 +896,6 @@ if (!$admin_data) {
                           <th>Waste Type</th>
                           <th>Expiration Date</th>
                           <th>Contact</th>
-                          <th>Category</th>
-                          <th>Status</th>
                           <th style="width: 40px">Action</th>
                         </tr>
                       </thead>
@@ -926,12 +924,6 @@ if (!$admin_data) {
                             </td>
                             <td>
                             <?= $pii['contact'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['category'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['Status'] ?>
                             </td>
                             <td>
                               <a href="include/deletewaste.php?id=<?= $pii['id'] ?>">Delete</a>
@@ -1011,24 +1003,6 @@ if (!$admin_data) {
                         </div>
                       </div>
                     </div>
-        <div class="form-group">
-            <label for="category">Category</label>
-            <select class="form-control" id="category" name="category" required>
-                <option value="" disabled selected>Select Category</option>
-                <option value="Usable">Usable</option>
-                <option value="Unusable">Unusable</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="status">Status</label>
-            <select class="form-control" id="status" name="status" required>
-                <option value="" disabled selected>Select Status</option>
-                <option value="Pending">Pending</option>
-                <option value="In Process">In Process</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Donated">Donated</option>
-            </select>
-        </div>
     </div>
     <div class="card-footer">
         <button type="submit" name="add-waste" class="btn btn-primary">Add Waste</button>
@@ -1117,44 +1091,7 @@ if (!$admin_data) {
                   </div>
                 </form>
                 </div>
-                <div class="card-header">
-                    <h3 class="card-title">Validate Waste</h3>
-                  </div>
-                  <div class="card">
-                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
-                  class="attractive-form" onsubmit="return validateForm()">
-                  <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
-                  <!-- Use PHP to echo the waste ID here -->
-                  <div class="card-body">
-                    <div class="form-group ">
-                      <label for="item">Waste ID</label>
-                      <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="category">Category</label>
-                      <select class="form-control" id="category" name="category" required>
-                        <option value="" disabled selected>Select Category</option>
-                        <option value="Usable">Usable</option>
-                        <option value="Unusable">Unusable</option>
-                      </select>
-                    </div>
-                    <div class="form-group ">
-                      <label for="status">Status</label>
-                      <select class="form-control" id="status" name="status" required>
-                        <option value="" disabled selected>Select Status</option>
-                        <option value="Pending">Pending</option>
-                        <option value="In Process">In Process</option>
-                        <option value="Delivered">Delivered</option>
-                        <option value="Donated">Donated</option>
-                      </select>
-                    </div>
-
-                  </div>
-                  <div class="card-footer">
-                    <button type="submit" name="validate-waste" class="btn btn-primary">Validate Waste</button>
-                  </div>
-                </form>
-                </div>
+                  
               </div>
             <?php
             } elseif (isset($_GET['accountsetting'])) {
