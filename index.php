@@ -385,7 +385,7 @@ $userLoggedIn = isset($_SESSION['isUserLoggedIn']) && $_SESSION['isUserLoggedIn'
             <div class="row">
               <div class="col">
                 <select class="form-control" name="year" required>
-                  <option value="" disabled selected>Year</option>
+                  <option value="" disabled selected> Select Year</option>
                   <?php
                   // Loop to generate options for years (from 2015 to 2050)
                   for ($year = 2015; $year <= 2050; $year++) {
@@ -396,7 +396,7 @@ $userLoggedIn = isset($_SESSION['isUserLoggedIn']) && $_SESSION['isUserLoggedIn'
               </div>
               <div class="col">
                 <select class="form-control" name="month" required>
-                  <option value="" disabled selected>Month</option>
+                  <option value="" disabled selected>Select Month</option>
                   <?php
                   // Loop to generate options for months
                   for ($i = 1; $i <= 12; $i++) {
@@ -408,7 +408,7 @@ $userLoggedIn = isset($_SESSION['isUserLoggedIn']) && $_SESSION['isUserLoggedIn'
               </div>
               <div class="col">
                 <select class="form-control" name="day" required>
-                  <option value="" disabled selected>Day</option>
+                  <option value="" disabled selected>Select Day</option>
                   <?php
                   // Loop to generate options for days
                   for ($i = 1; $i <= 31; $i++) {
