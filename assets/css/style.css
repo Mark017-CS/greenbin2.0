@@ -990,7 +990,7 @@ section .container {
 }
 
 .developers .developers-wrap .developers-info h4 {
-  font-size: 20px;
+  font-size: 100px;
   color: #fff;
   font-weight: 600;
 }
@@ -998,7 +998,6 @@ section .container {
 .developers .developers-wrap .developers-info p {
   color: #ffffff;
   font-size: 14px;
-  text-transform: uppercase;
   padding: 0;
   margin: 0;
 }

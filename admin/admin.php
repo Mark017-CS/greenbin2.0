@@ -214,72 +214,75 @@ if (!$admin_data) {
             <?php
             if (isset($_GET['changebackground'])) {
               ?>
-              <div class="card card-primary col-lg-12">
-                <div class="card-header">
-                  <h3 class="card-title">Manage Home Background</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card">
+              <div class="table-responsive">
+                <div class="card card-primary col-lg-12">
                   <div class="card-header">
-                    <h3 class="card-title">Background</h3>
+                    <h3 class="card-title">Manage Home Background</h3>
                   </div>
-                  <div class="card-body p-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Background Image</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $q = "SELECT * from admin_homebg WHERE admin_id=$admin_id";
-                        $r = mysqli_query($db, $q);
-                        $c = 1;
-                        while ($pi = mysqli_fetch_array($r)) {
-                          ?>
+                  <!-- /.card-header -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">Background</h3>
+                    </div>
+                    <div class="card-body p-0">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td>
-                              <?= $c ?>
-                            </td>
-                            <td>
-                              <img src="../images/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
-                            </td>
+                            <th style="width: 10px">#</th>
+                            <th>Background Image</th>
                           </tr>
+                        </thead>
+                        <tbody>
                           <?php
-                          $c++;
-                        }
-                        ?>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <!-- form start -->
-                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                  <div class="card-body">
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Choose Background Image</label>
-                      <div class="input-container">
-                        <input type="file" class="form-control" name="background" required>
-                        <i class="fas fa-image icon"></i>
-                      </div>
+                          $q = "SELECT * from admin_homebg WHERE admin_id=$admin_id";
+                          $r = mysqli_query($db, $q);
+                          $c = 1;
+                          while ($pi = mysqli_fetch_array($r)) {
+                            ?>
+                            <tr>
+                              <td>
+                                <?= $c ?>
+                              </td>
+                              <td>
+                                <img src="../images/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
+                              </td>
+                            </tr>
+                            <?php
+                            $c++;
+                          }
+                          ?>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer">
-                    <?php
-                    $query = "SELECT * FROM admin_homebg WHERE admin_id = $admin_id";
-                    $result = mysqli_query($db, $query);
-                    $row_count = mysqli_num_rows($result);
+                  <!-- form start -->
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Choose Background Image</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="background" required>
+                          <i class="fas fa-image icon"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <?php
+                      $query = "SELECT * FROM admin_homebg WHERE admin_id = $admin_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
 
-                    if ($row_count == 0) {
-                      echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
-                    } else {
-                      echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
-                    }
-                    ?>
-                  </div>
-                </form>
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
+                      } else {
+                        echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
+                  </form>
+                </div>
+
               </div>
               <?php
             } elseif (isset($_GET['homesetting'])) {
@@ -294,42 +297,44 @@ if (!$admin_data) {
                     <h3 class="card-title">Home</h3>
                   </div>
                   <div class="card-body p-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Home Title 1</th>
-                          <th>Home Title 2</th>
-                          <th>Home Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $q = "SELECT * from admin_home WHERE admin_id=$admin_id";
-                        $r = mysqli_query($db, $q);
-                        $c = 1;
-                        while ($pi = mysqli_fetch_array($r)) {
-                          ?>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td>
-                              <?= $c ?>
-                            </td>
-                            <td>
-                              <?= $pi['home_title'] ?>
-                            </td>
-                            <td>
-                              <?= $pi['home_title2'] ?>
-                            </td>
-                            <td>
-                              <?= $pi['home_desc'] ?>
-                            </td>
+                            <th style="width: 10px">#</th>
+                            <th>Home Title 1</th>
+                            <th>Home Title 2</th>
+                            <th>Home Description</th>
                           </tr>
+                        </thead>
+                        <tbody>
                           <?php
-                          $c++;
-                        }
-                        ?>
-                      </tbody>
-                    </table>
+                          $q = "SELECT * from admin_home WHERE admin_id=$admin_id";
+                          $r = mysqli_query($db, $q);
+                          $c = 1;
+                          while ($pi = mysqli_fetch_array($r)) {
+                            ?>
+                            <tr>
+                              <td>
+                                <?= $c ?>
+                              </td>
+                              <td>
+                                <?= $pi['home_title'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['home_title2'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['home_desc'] ?>
+                              </td>
+                            </tr>
+                            <?php
+                            $c++;
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <!-- form start -->
@@ -367,54 +372,56 @@ if (!$admin_data) {
                     <h3 class="card-title">Social Media</h3>
                   </div>
                   <div class="card-body p-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">#</th>
-                          <th>Twitter</th>
-                          <th>Facebook</th>
-                          <th>Instagram</th>
-                          <th>Skype</th>
-                          <th>Youtube</th>
-                          <th>Linkedin</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $q = "SELECT * from admin_social WHERE admin_id=$admin_id";
-                        $r = mysqli_query($db, $q);
-                        $c = 1;
-                        while ($pi = mysqli_fetch_array($r)) {
-                          ?>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td>
-                              <?= $c ?>
-                            </td>
-                            <td>
-                              <?= $pi['twitter'] ?>
-                            </td>
-                            <td>
-                              <?= $pi['facebook'] ?>
-                            </td>
-                            <td>
-                              <?= $pi['instagram'] ?>
-                            </td>
-                            <td>
-                              <?= $pi['skype'] ?>
-                            </td>
-                            <td>
-                              <?= $pi['youtube'] ?>
-                            </td>
-                            <td>
-                              <?= $pi['linkedin'] ?>
-                            </td>
+                            <th style="width: 10px">#</th>
+                            <th>Twitter</th>
+                            <th>Facebook</th>
+                            <th>Instagram</th>
+                            <th>Skype</th>
+                            <th>Youtube</th>
+                            <th>Linkedin</th>
                           </tr>
+                        </thead>
+                        <tbody>
                           <?php
-                          $c++;
-                        }
-                        ?>
-                      </tbody>
-                    </table>
+                          $q = "SELECT * from admin_social WHERE admin_id=$admin_id";
+                          $r = mysqli_query($db, $q);
+                          $c = 1;
+                          while ($pi = mysqli_fetch_array($r)) {
+                            ?>
+                            <tr>
+                              <td>
+                                <?= $c ?>
+                              </td>
+                              <td>
+                                <?= $pi['twitter'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['facebook'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['instagram'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['skype'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['youtube'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['linkedin'] ?>
+                              </td>
+                            </tr>
+                            <?php
+                            $c++;
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <!-- form start -->
@@ -423,7 +430,7 @@ if (!$admin_data) {
                     <div class="form-group ">
                       <label for="exampleInputEmail1">Twitter</label>
                       <input type="text" class="form-control" name="twitter" id="exampleInputEmail1"
-                        placeholder="Enter username" >
+                        placeholder="Enter username">
                     </div>
                     <div class="form-group ">
                       <label for="exampleInputPassword1">Facebook</label>
@@ -480,46 +487,48 @@ if (!$admin_data) {
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th style="width: 10px">#</th>
-                            <th>About Description</th>
-                            <th>MIssion</th>
-                            <th>Vision</th>
-                            <th>About Image</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $q = "SELECT * from admin_about WHERE admin_id=$admin_id";
-                          $r = mysqli_query($db, $q);
-                          $c = 1;
-                          while ($about = mysqli_fetch_array($r)) {
-                            ?>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
                             <tr>
-                              <td>
-                              <?= $c ?>
-                              </td>
-                              <td>
-                              <?= $about['about_desc'] ?>
-                              </td>
-                              <td>
-                              <?= $about['mission'] ?>
-                              </td>
-                              <td>
-                              <?= $about['vision'] ?>
-                              </td>
-                              <td>
-                                <img src="../images/<?= $about['about_img'] ?>" style="height: 70px; width: 100px;">
-                              </td>
+                              <th style="width: 10px">#</th>
+                              <th>About Description</th>
+                              <th>MIssion</th>
+                              <th>Vision</th>
+                              <th>About Image</th>
                             </tr>
+                          </thead>
+                          <tbody>
                             <?php
-                            $c++;
-                          }
-                          ?>
-                        </tbody>
-                      </table>
+                            $q = "SELECT * from admin_about WHERE admin_id=$admin_id";
+                            $r = mysqli_query($db, $q);
+                            $c = 1;
+                            while ($about = mysqli_fetch_array($r)) {
+                              ?>
+                              <tr>
+                                <td>
+                                <?= $c ?>
+                                </td>
+                                <td>
+                                <?= $about['about_desc'] ?>
+                                </td>
+                                <td>
+                                <?= $about['mission'] ?>
+                                </td>
+                                <td>
+                                <?= $about['vision'] ?>
+                                </td>
+                                <td>
+                                  <img src="../images/<?= $about['about_img'] ?>" style="height: 70px; width: 100px;">
+                                </td>
+                              </tr>
+                              <?php
+                              $c++;
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                   <!-- form start -->
@@ -570,49 +579,51 @@ if (!$admin_data) {
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th style="width: 10px">Developer's ID</th>
-                            <th>Developer's Name</th>
-                            <th>Developer's Description</th>
-                            <th>Profile</th>
-                            <th>Faccebook Username</th>
-                            <th style="width: 40px">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $q = "SELECT * from admin_developers WHERE admin_id=$admin_id";
-                          $r = mysqli_query($db, $q);
-                          while ($developers = mysqli_fetch_array($r)) {
-                            ?>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
                             <tr>
-                              <td>
-                              <?= $developers['id'] ?>
-                              </td>
-                              <td>
-                              <?= $developers['Name'] ?>
-                              </td>
-                              <td>
-                              <?= $developers['Description'] ?>
-                              </td>
-                              <td>
-                                <img src="../images/<?= $developers['deve_profile'] ?>" style="height: 70px; width: 100px;">
-                              </td>
-                              <td>
-                              <?= $developers['social'] ?>
-                              </td>
-                              <td>
-                                <a href="include/deletedeveloper.php?id=<?= $developers['id'] ?>">Delete</a>
-                              </td>
+                              <th style="width: 10px">Developer's ID</th>
+                              <th>Developer's Name</th>
+                              <th>Developer's Description</th>
+                              <th>Profile</th>
+                              <th>Faccebook Username</th>
+                              <th style="width: 40px">Action</th>
                             </tr>
+                          </thead>
+                          <tbody>
                             <?php
-                            $c++;
-                          }
-                          ?>
-                        </tbody>
-                      </table>
+                            $q = "SELECT * from admin_developers WHERE admin_id=$admin_id";
+                            $r = mysqli_query($db, $q);
+                            while ($developers = mysqli_fetch_array($r)) {
+                              ?>
+                              <tr>
+                                <td>
+                                <?= $developers['id'] ?>
+                                </td>
+                                <td>
+                                <?= $developers['Name'] ?>
+                                </td>
+                                <td>
+                                <?= $developers['Description'] ?>
+                                </td>
+                                <td>
+                                  <img src="../images/<?= $developers['deve_profile'] ?>" style="height: 70px; width: 100px;">
+                                </td>
+                                <td>
+                                <?= $developers['social'] ?>
+                                </td>
+                                <td>
+                                  <a href="include/deletedeveloper.php?id=<?= $developers['id'] ?>">Delete</a>
+                                </td>
+                              </tr>
+                              <?php
+                              $c++;
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -707,173 +718,177 @@ if (!$admin_data) {
                     <h3 class="card-title">Organizations</h3>
                   </div>
                   <div class="card-body p-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">ID</th>
-                          <th>Name</th>
-                          <th>Number</th>
-                          <th>Email</th>
-                          <th>Location</th>
-                          <th>Waste Collecting</th>
-                          <th>Image</th>
-                          <th>Website Link</th>
-                          <th style="width: 40px">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $qq = "SELECT * from orgs WHERE admin_id = $admin_id";
-                        $rr = mysqli_query($db, $qq);
-                        $cc = 1;
-                        while ($pii = mysqli_fetch_array($rr)) {
-                          ?>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td>
-                            <?= $pii['id'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['name'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['number'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['email'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['location'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['wasteType'] ?>
-                            </td>
-                            <td>
-                              <img src="../images/<?= $pii['orgs_profile'] ?>" style="height: 150px; width: 130px;">
-
-                            </td>
-                            <td><a href="<?= $pii['website_link'] ?>" target="_blank">Open Link</a></td>
-                            <td>
-                              <a href="include/deleteorg.php?id=<?= $pii['id'] ?>">Delete</a>
-                            </td>
+                            <th style="width: 10px">ID</th>
+                            <th>Name</th>
+                            <th>Number</th>
+                            <th>Email</th>
+                            <th>Location</th>
+                            <th>Waste Collecting</th>
+                            <th>Image</th>
+                            <th>Website Link</th>
+                            <th style="width: 40px">Action</th>
                           </tr>
+                        </thead>
+                        <tbody>
                           <?php
-                          $cc++;
-                        }
-                        ?>
-                      </tbody>
-                    </table>
+                          $qq = "SELECT * from orgs WHERE admin_id = $admin_id";
+                          $rr = mysqli_query($db, $qq);
+                          $cc = 1;
+                          while ($pii = mysqli_fetch_array($rr)) {
+                            ?>
+                            <tr>
+                              <td>
+                              <?= $pii['id'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['name'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['number'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['email'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['location'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['wasteType'] ?>
+                              </td>
+                              <td>
+                                <img src="../images/<?= $pii['orgs_profile'] ?>" style="height: 150px; width: 130px;">
+
+                              </td>
+                              <td><a href="<?= $pii['website_link'] ?>" target="_blank">Open Link</a></td>
+                              <td>
+                                <a href="include/deleteorg.php?id=<?= $pii['id'] ?>">Delete</a>
+                              </td>
+                            </tr>
+                            <?php
+                            $cc++;
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-                
                 <div class="card-header">
-                    <h3 class="card-title">Add Organization</h3>
-                  </div>
-                  <div class="card">
-                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
-                  onsubmit="return validateForm()">
-                  <div class="card-body">
+                  <h3 class="card-title">Add Organization</h3>
+                </div>
+                <div class="card">
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
+                    onsubmit="return validateForm()">
+                    <div class="card-body">
 
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Orgs Name</label>
-                      <input type="text" class="form-control" name="name" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Contact Number</label>
-                      <input type="text" class="form-control" name="number" id="mobile" pattern="09[0-9]{9}" title="Please enter a valid 11-digit mobile number starting with '09'" required>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Orgs Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Contact Number</label>
+                        <input type="text" class="form-control" name="number" id="mobile" pattern="09[0-9]{9}"
+                          title="Please enter a valid 11-digit mobile number starting with '09'" required>
 
-                    </div>
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Email</label>
-                      <input type="email" class="form-control" name="email" id="email" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Location</label>
-                      <input type="text" class="form-control" name="location" id="exampleInputEmail1" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="wasteType">Waste Collecting</label>
-                      <select class="form-control" id="wasteType" name="wasteType" required>
-                        <option value="" disabled selected>Select Waste Collected</option>
-                        <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
-                        <option value="Meat and Bones">Meat and Bones</option>
-                        <option value="Seeds and Nuts">Seeds and Nuts</option>
-                        <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
-                        <option value="Spoiled and Unusable">Spoiled and Unusable</option>
-                      </select>
-                    </div>
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Orgs Profile</label>
-                      <div class="input-container">
-                        <input type="file" class="form-control" name="orgs_profile" required>
-                        <i class="fas fa-image icon"></i>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Location</label>
+                        <input type="text" class="form-control" name="location" id="exampleInputEmail1" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="wasteType">Waste Collecting</label>
+                        <select class="form-control" id="wasteType" name="wasteType" required>
+                          <option value="" disabled selected>Select Waste Collected</option>
+                          <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
+                          <option value="Meat and Bones">Meat and Bones</option>
+                          <option value="Seeds and Nuts">Seeds and Nuts</option>
+                          <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
+                          <option value="Spoiled and Unusable">Spoiled and Unusable</option>
+                        </select>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Orgs Profile</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="orgs_profile" required>
+                          <i class="fas fa-image icon"></i>
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Website Link</label>
+                        <input type="url" class="form-control" name="website_link" id="website" required>
                       </div>
                     </div>
-                    <div class="form-group ">
-                      <label for="exampleInputEmail1">Website Link</label>
-                      <input type="url" class="form-control" name="website_link" id="website" required>
+                    <div class="card-footer">
+                      <button type="submit" name="add-organization" class="btn btn-primary">Add Organization</button>
                     </div>
-                  </div>
-                  <div class="card-footer">
-                    <button type="submit" name="add-organization" class="btn btn-primary">Add Organization</button>
-                  </div>
-                </form>
+                  </form>
                 </div>
                 <div class="card-header">
-                    <h3 class="card-title">Update Organization Information</h3>
-                  </div>
-                  <div class="card">
-                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
-    <div class="card-body">
-        <div class="form-group ">
-            <label for="org_id">Organization ID</label>
-            <input type="text" class="form-control" name="id" id="id" value="<?php echo $id; ?>" >
-        </div>
-        <div class="form-group ">
-            <label for="exampleInputEmail1">Orgs Name</label>
-            <input type="text" class="form-control" name="name" required>
-        </div>
-        <div class="form-group ">
-            <label for="exampleInputEmail1">Contact Number</label>
-            <input type="text" class="form-control" name="number" id="mobile" pattern="09[0-9]{9}" title="Please enter a valid 11-digit mobile number starting with '09'" required>
+                  <h3 class="card-title">Update Organization Information</h3>
+                </div>
+                <div class="card">
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
+                    onsubmit="return validateForm()">
+                    <div class="card-body">
+                      <div class="form-group ">
+                        <label for="org_id">Organization ID</label>
+                        <input type="text" class="form-control" name="id" id="id" value="<?php echo $id; ?>">
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Orgs Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Contact Number</label>
+                        <input type="text" class="form-control" name="number" id="mobile" pattern="09[0-9]{9}"
+                          title="Please enter a valid 11-digit mobile number starting with '09'" required>
 
-        </div>
-        <div class="form-group ">
-            <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" name="email" id="email" required>
-        </div>
-        <div class="form-group ">
-            <label for="exampleInputEmail1">Location</label>
-            <input type="text" class="form-control" name="location" id="exampleInputEmail1" required>
-        </div>
-        <div class="form-group ">
-            <label for="wasteType">Waste Collecting</label>
-            <select class="form-control" id="wasteType" name="wasteType" required>
-                <option value="" disabled selected>Select Waste Collected</option>
-                <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
-                <option value="Meat and Bones">Meat and Bones</option>
-                <option value="Seeds and Nuts">Seeds and Nuts</option>
-                <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
-                <option value="Spoiled and Unusable">Spoiled and Unusable</option>
-            </select>
-        </div>
-        <div class="form-group ">
-            <label for="exampleInputEmail1">Orgs Profile</label>
-            <div class="input-container">
-                <input type="file" class="form-control" name="orgs_profile" required>
-                <i class="fas fa-image icon"></i>
-            </div>
-        </div>
-        <div class="form-group ">
-            <label for="exampleInputEmail1">Website Link</label>
-            <input type="url" class="form-control" name="website_link" id="website" required>
-        </div>
-    </div>
-    <div class="card-footer">
-        <button type="submit" name="update-organization" class="btn btn-primary">Update Organization</button>
-    </div>
-</form>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Location</label>
+                        <input type="text" class="form-control" name="location" id="exampleInputEmail1" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="wasteType">Waste Collecting</label>
+                        <select class="form-control" id="wasteType" name="wasteType" required>
+                          <option value="" disabled selected>Select Waste Collected</option>
+                          <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
+                          <option value="Meat and Bones">Meat and Bones</option>
+                          <option value="Seeds and Nuts">Seeds and Nuts</option>
+                          <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
+                          <option value="Spoiled and Unusable">Spoiled and Unusable</option>
+                        </select>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Orgs Profile</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="orgs_profile" required>
+                          <i class="fas fa-image icon"></i>
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="exampleInputEmail1">Website Link</label>
+                        <input type="url" class="form-control" name="website_link" id="website" required>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <button type="submit" name="update-organization" class="btn btn-primary">Update Organization</button>
+                    </div>
+                  </form>
 
- </div>
+                </div>
               </div>
             <?php
             } elseif (isset($_GET['wastesetting'])) {
@@ -887,211 +902,215 @@ if (!$admin_data) {
                     <h3 class="card-title">Wastes</h3>
                   </div>
                   <div class="card-body p-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th style="width: 10px">ID</th>
-                          <th>Item</th>
-                          <th>Weight</th>
-                          <th>Waste Type</th>
-                          <th>Expiration Date</th>
-                          <th>Contact</th>
-                          <th style="width: 40px">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $qq = "SELECT * from waste";
-                        $rr = mysqli_query($db, $qq);
-                        $cc = 1;
-                        while ($pii = mysqli_fetch_array($rr)) {
-                          ?>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td>
-                            <?= $pii['id'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['item'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['weight'] ?> kg
-                            </td>
-                            <td>
-                            <?= $pii['wasteType'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['xdate'] ?>
-                            </td>
-                            <td>
-                            <?= $pii['contact'] ?>
-                            </td>
-                            <td>
-                              <a href="include/deletewaste.php?id=<?= $pii['id'] ?>">Delete</a>
-                            </td>
+                            <th style="width: 10px">ID</th>
+                            <th>Item</th>
+                            <th>Weight</th>
+                            <th>Waste Type</th>
+                            <th>Expiration Date</th>
+                            <th>Contact</th>
+                            <th style="width: 40px">Action</th>
                           </tr>
-                        <?php
-                        }
-                        ?>
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $qq = "SELECT * from waste";
+                          $rr = mysqli_query($db, $qq);
+                          $cc = 1;
+                          while ($pii = mysqli_fetch_array($rr)) {
+                            ?>
+                            <tr>
+                              <td>
+                              <?= $pii['id'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['item'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['weight'] ?> kg
+                              </td>
+                              <td>
+                              <?= $pii['wasteType'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['xdate'] ?>
+                              </td>
+                              <td>
+                              <?= $pii['contact'] ?>
+                              </td>
+                              <td>
+                                <a href="include/deletewaste.php?id=<?= $pii['id'] ?>">Delete</a>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <div class="card-header">
-                    <h3 class="card-title">Add Waste</h3>
-                  </div>
-                  <div class="card">
-                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data" class="attractive-form" onsubmit="return validateForm()">
-    <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
-    <div class="card-body">
-        <div class="form-group">
-            <label for="item">Item</label>
-            <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
-        </div>
-        <div class="form-group">
-            <label for="weight">Weight</label>
-            <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight in kg" required pattern="[0-9]+" title="Input must be numerical">
-            <div class="invalid-feedback">Please enter a numerical value for weight.</div>
-        </div>
-        <div class="form-group">
-            <label for="wasteType">Waste Type</label>
-            <select class="form-control" id="wasteType" name="wasteType" required>
-                <option value="" disabled selected>Select Waste Type</option>
-                <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
-                <option value="Meat and Bones">Meat and Bones</option>
-                <option value="Seeds and Nuts">Seeds and Nuts</option>
-                <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
-                <option value="Spoiled and Unusable">Spoiled and Unusable</option>
-            </select>
-        </div>
-        <div class="form-group ">
-                      <label for="xdate">Expiration Date</label>
-                      <div class="row">
-                        <div class="col">
-                          <select class="form-control" name="year" required>
-                            <option value="" disabled selected>Year</option>
-                            <?php
-                            // Loop to generate options for years (from 2015 to 2050)
-                            for ($year = 2015; $year <= 2050; $year++) {
-                              echo "<option value='$year'>$year</option>";
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col">
-                          <select class="form-control" name="month" required>
-                            <option value="" disabled selected>Month</option>
-                            <?php
-                            // Loop to generate options for months
-                            for ($i = 1; $i <= 12; $i++) {
-                              $month = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
-                              echo "<option value='$month'>$month</option>";
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col">
-                          <select class="form-control" name="day" required>
-                            <option value="" disabled selected>Day</option>
-                            <?php
-                            // Loop to generate options for days
-                            for ($i = 1; $i <= 31; $i++) {
-                              $day = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
-                              echo "<option value='$day'>$day</option>";
-                            }
-                            ?>
-                          </select>
+                  <h3 class="card-title">Add Waste</h3>
+                </div>
+                <div class="card">
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
+                    class="attractive-form" onsubmit="return validateForm()">
+                    <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="item">Item</label>
+                        <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="weight">Weight</label>
+                        <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight in kg"
+                          required pattern="[0-9]+" title="Input must be numerical">
+                        <div class="invalid-feedback">Please enter a numerical value for weight.</div>
+                      </div>
+                      <div class="form-group">
+                        <label for="wasteType">Waste Type</label>
+                        <select class="form-control" id="wasteType" name="wasteType" required>
+                          <option value="" disabled selected>Select Waste Type</option>
+                          <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
+                          <option value="Meat and Bones">Meat and Bones</option>
+                          <option value="Seeds and Nuts">Seeds and Nuts</option>
+                          <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
+                          <option value="Spoiled and Unusable">Spoiled and Unusable</option>
+                        </select>
+                      </div>
+                      <div class="form-group ">
+                        <label for="xdate">Expiration Date</label>
+                        <div class="row">
+                          <div class="col">
+                            <select class="form-control" name="year" required>
+                              <option value="" disabled selected>Year</option>
+                              <?php
+                              // Loop to generate options for years (from 2015 to 2050)
+                              for ($year = 2015; $year <= 2050; $year++) {
+                                echo "<option value='$year'>$year</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col">
+                            <select class="form-control" name="month" required>
+                              <option value="" disabled selected>Month</option>
+                              <?php
+                              // Loop to generate options for months
+                              for ($i = 1; $i <= 12; $i++) {
+                                $month = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                                echo "<option value='$month'>$month</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col">
+                            <select class="form-control" name="day" required>
+                              <option value="" disabled selected>Day</option>
+                              <?php
+                              // Loop to generate options for days
+                              for ($i = 1; $i <= 31; $i++) {
+                                $day = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                                echo "<option value='$day'>$day</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
-    </div>
-    <div class="card-footer">
-        <button type="submit" name="add-waste" class="btn btn-primary">Add Waste</button>
-    </div>
-</form>
+                    <div class="card-footer">
+                      <button type="submit" name="add-waste" class="btn btn-primary">Add Waste</button>
+                    </div>
+                  </form>
 
                 </div>
                 <div class="card-header">
-                    <h3 class="card-title">Update Waste</h3>
-                  </div>
-                  <div class="card">
-                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
-                  class="attractive-form" onsubmit="return validateForm()">
-                  <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
-                  <!-- Use PHP to echo the waste ID here -->
-                  <div class="card-body">
-                    <div class="form-group ">
-                      <label for="item">Waste ID</label>
-                      <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="item">Item</label>
-                      <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
-                    </div>
-                    <div class="form-group ">
-                      <label for="weight">Weight</label>
-                      <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight in kg"
-                        required pattern="[0-9]+" title="Input must be numerical">
-                      <div class="invalid-feedback">Please enter a numerical value for weight.</div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="wasteType">Waste Type</label>
-                      <select class="form-control" id="wasteType" name="wasteType" required>
-                        <option value="" disabled selected>Select Waste Type</option>
-                        <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
-                        <option value="Meat and Bones">Meat and Bones</option>
-                        <option value="Seeds and Nuts">Seeds and Nuts</option>
-                        <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
-                        <option value="Spoiled and Unusable">Spoiled and Unusable</option>
-                      </select>
-                    </div>
-                    <div class="form-group ">
-                      <label for="xdate">Expiration Date</label>
-                      <div class="row">
-                        <div class="col">
-                          <select class="form-control" name="year" required>
-                            <option value="" disabled selected>Year</option>
-                            <?php
-                            // Loop to generate options for years (from 2015 to 2050)
-                            for ($year = 2015; $year <= 2050; $year++) {
-                              echo "<option value='$year'>$year</option>";
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col">
-                          <select class="form-control" name="month" required>
-                            <option value="" disabled selected>Month</option>
-                            <?php
-                            // Loop to generate options for months
-                            for ($i = 1; $i <= 12; $i++) {
-                              $month = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
-                              echo "<option value='$month'>$month</option>";
-                            }
-                            ?>
-                          </select>
-                        </div>
-                        <div class="col">
-                          <select class="form-control" name="day" required>
-                            <option value="" disabled selected>Day</option>
-                            <?php
-                            // Loop to generate options for days
-                            for ($i = 1; $i <= 31; $i++) {
-                              $day = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
-                              echo "<option value='$day'>$day</option>";
-                            }
-                            ?>
-                          </select>
+                  <h3 class="card-title">Update Waste</h3>
+                </div>
+                <div class="card">
+                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data"
+                    class="attractive-form" onsubmit="return validateForm()">
+                    <input type="hidden" name="waste_id" value="<?php echo $waste_id; ?>">
+                    <!-- Use PHP to echo the waste ID here -->
+                    <div class="card-body">
+                      <div class="form-group ">
+                        <label for="item">Waste ID</label>
+                        <input type="text" class="form-control" name="id" id="id" placeholder="Enter ID" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="item">Item</label>
+                        <input type="text" class="form-control" name="item" id="item" placeholder="Enter item" required>
+                      </div>
+                      <div class="form-group ">
+                        <label for="weight">Weight</label>
+                        <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight in kg"
+                          required pattern="[0-9]+" title="Input must be numerical">
+                        <div class="invalid-feedback">Please enter a numerical value for weight.</div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="wasteType">Waste Type</label>
+                        <select class="form-control" id="wasteType" name="wasteType" required>
+                          <option value="" disabled selected>Select Waste Type</option>
+                          <option value="Rinds, Peels, and Shells">Rinds, Peels, and Shells</option>
+                          <option value="Meat and Bones">Meat and Bones</option>
+                          <option value="Seeds and Nuts">Seeds and Nuts</option>
+                          <option value="Stems, Leaves, and Plant Scraps">Stems, Leaves, and Plant Scraps</option>
+                          <option value="Spoiled and Unusable">Spoiled and Unusable</option>
+                        </select>
+                      </div>
+                      <div class="form-group ">
+                        <label for="xdate">Expiration Date</label>
+                        <div class="row">
+                          <div class="col">
+                            <select class="form-control" name="year" required>
+                              <option value="" disabled selected>Year</option>
+                              <?php
+                              // Loop to generate options for years (from 2015 to 2050)
+                              for ($year = 2015; $year <= 2050; $year++) {
+                                echo "<option value='$year'>$year</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col">
+                            <select class="form-control" name="month" required>
+                              <option value="" disabled selected>Month</option>
+                              <?php
+                              // Loop to generate options for months
+                              for ($i = 1; $i <= 12; $i++) {
+                                $month = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                                echo "<option value='$month'>$month</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="col">
+                            <select class="form-control" name="day" required>
+                              <option value="" disabled selected>Day</option>
+                              <?php
+                              // Loop to generate options for days
+                              for ($i = 1; $i <= 31; $i++) {
+                                $day = str_pad($i, 2, "0", STR_PAD_LEFT); // Add leading zero if needed
+                                echo "<option value='$day'>$day</option>";
+                              }
+                              ?>
+                            </select>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                  </div>
-                  <div class="card-footer">
-                    <button type="submit" name="update-waste" class="btn btn-primary">Update Waste</button>
-                  </div>
-                </form>
+                    </div>
+                    <div class="card-footer">
+                      <button type="submit" name="update-waste" class="btn btn-primary">Update Waste</button>
+                    </div>
+                  </form>
                 </div>
-                  
+
               </div>
             <?php
             } elseif (isset($_GET['accountsetting'])) {
@@ -1106,54 +1125,56 @@ if (!$admin_data) {
                     <h3 class="card-title">User Accounts</h3>
                   </div>
                   <div class="card-body p-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>User ID</th>
-                          <th>Fullname</th>
-                          <th>Email</th>
-                          <th>Password</th>
-                          <th>User Profile</th>
-                          <th>Code</th>
-                          <th style="width: 40px">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $q = "SELECT * from user";
-                        $r = mysqli_query($db, $q);
-                        $c = 1;
-                        while ($pi = mysqli_fetch_array($r)) {
-                          ?>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
                           <tr>
-                            <td>
-                            <?= $pi['user_id'] ?>
-                            </td>
-                            <td>
-                            <?= $pi['fullname'] ?>
-                            </td>
-                            <td>
-                            <?= $pi['email'] ?>
-                            </td>
-                            <td>
-                            <?= $pi['password'] ?>
-                            </td>
-                            <td>
-                              <img src="../images/<?= $pi['user_profile'] ?>" style="height: 150px; width: 130px;">
-                            </td>
-                            <td>
-                            <?= $pi['code'] ?>
-                            </td>
-                            <td>
-                              <a href="include/deleteuser.php?user_id=<?= $pi['user_id'] ?>">Delete</a>
-                            </td>
+                            <th>User ID</th>
+                            <th>Fullname</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>User Profile</th>
+                            <th>Code</th>
+                            <th style="width: 40px">Action</th>
                           </tr>
+                        </thead>
+                        <tbody>
                           <?php
-                          $c++;
-                        }
-                        ?>
-                      </tbody>
-                    </table>
+                          $q = "SELECT * from user";
+                          $r = mysqli_query($db, $q);
+                          $c = 1;
+                          while ($pi = mysqli_fetch_array($r)) {
+                            ?>
+                            <tr>
+                              <td>
+                              <?= $pi['user_id'] ?>
+                              </td>
+                              <td>
+                              <?= $pi['fullname'] ?>
+                              </td>
+                              <td>
+                              <?= $pi['email'] ?>
+                              </td>
+                              <td>
+                              <?= $pi['password'] ?>
+                              </td>
+                              <td>
+                                <img src="../images/<?= $pi['user_profile'] ?>" style="height: 150px; width: 130px;">
+                              </td>
+                              <td>
+                              <?= $pi['code'] ?>
+                              </td>
+                              <td>
+                                <a href="include/deleteuser.php?user_id=<?= $pi['user_id'] ?>">Delete</a>
+                              </td>
+                            </tr>
+                            <?php
+                            $c++;
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1245,46 +1266,48 @@ if (!$admin_data) {
                 <h3 class="card-title">Admin Account</h3>
               </div>
               <div class="card-body p-0">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>Admin ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Password</th>
-                      <th>Admin Profile</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $q = "SELECT * from admin";
-                    $r = mysqli_query($db, $q);
-                    $c = 1;
-                    while ($pi = mysqli_fetch_array($r)) {
-                      ?>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
                       <tr>
-                        <td>
-                        <?= $pi['admin_id'] ?>
-                        </td>
-                        <td>
-                        <?= $pi['name'] ?>
-                        </td>
-                        <td>
-                        <?= $pi['email'] ?>
-                        </td>
-                        <td>
-                        <?= $pi['password'] ?>
-                        </td>
-                        <td>
-                          <img src="../images/<?= $pi['admin_prof'] ?>" style="height: 150px; width: 130px;">
-                        </td>
+                        <th>Admin ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Admin Profile</th>
                       </tr>
+                    </thead>
+                    <tbody>
                       <?php
-                      $c++;
-                    }
-                    ?>
-                  </tbody>
-                </table>
+                      $q = "SELECT * from admin";
+                      $r = mysqli_query($db, $q);
+                      $c = 1;
+                      while ($pi = mysqli_fetch_array($r)) {
+                        ?>
+                        <tr>
+                          <td>
+                          <?= $pi['admin_id'] ?>
+                          </td>
+                          <td>
+                          <?= $pi['name'] ?>
+                          </td>
+                          <td>
+                          <?= $pi['email'] ?>
+                          </td>
+                          <td>
+                          <?= $pi['password'] ?>
+                          </td>
+                          <td>
+                            <img src="../images/<?= $pi['admin_prof'] ?>" style="height: 150px; width: 130px;">
+                          </td>
+                        </tr>
+                        <?php
+                        $c++;
+                      }
+                      ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

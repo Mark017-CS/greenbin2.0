@@ -272,7 +272,7 @@ $home = mysqli_fetch_array($resultHome);
               <div class="developers-wrap">
                 <img src="images/<?= $developers['deve_profile'] ?>" class="img-fluid developers-image" alt="">
                 <div class="developers-info">
-                  <h4>
+                  <h4 style="text-transform: uppercase;">
                     <?= $developers['Name'] ?>
                   </h4>
                   <p>
@@ -365,7 +365,7 @@ $userLoggedIn = isset($_SESSION['isUserLoggedIn']) && $_SESSION['isUserLoggedIn'
           </div>
           <div class="form-group">
             <label for="weight">Weight</label>
-            <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight" required
+            <input type="text" class="form-control" name="weight" id="weight" placeholder="Enter weight in kg" required
               pattern="[0-9]+" title="Input must be numerical">
             <div class="invalid-feedback">Please enter a numerical value for weight.</div>
           </div>
