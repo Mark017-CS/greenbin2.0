@@ -78,6 +78,10 @@ if (!$admin_data) {
       transform: translateY(-50%);
       pointer-events: none;
     }
+
+    .content {
+      margin-top: 60px;
+    }
   </style>
 </head>
 
@@ -85,7 +89,7 @@ if (!$admin_data) {
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -104,6 +108,7 @@ if (!$admin_data) {
       </ul>
     </nav>
     <!-- /.navbar -->
+
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -214,76 +219,74 @@ if (!$admin_data) {
             <?php
             if (isset($_GET['changebackground'])) {
               ?>
-              <div class="table-responsive">
-                <div class="card card-primary col-lg-12">
+              <div class="card card-primary col-lg-12">
+                <div class="card-header">
+                  <h3 class="card-title">Manage Home Background</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Manage Home Background</h3>
+                    <h3 class="card-title">Background</h3>
                   </div>
-                  <!-- /.card-header -->
-                  <div class="card">
-                    <div class="card-header">
-                      <h3 class="card-title">Background</h3>
-                    </div>
-                    <div class="card-body p-0">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Background Image</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php
-                          $q = "SELECT * from admin_homebg WHERE admin_id=$admin_id";
-                          $r = mysqli_query($db, $q);
-                          $c = 1;
-                          while ($pi = mysqli_fetch_array($r)) {
-                            ?>
-                            <tr>
-                              <td>
-                                <?= $c ?>
-                              </td>
-                              <td>
-                                <img src="../images/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
-                              </td>
-                            </tr>
-                            <?php
-                            $c++;
-                          }
+                  <div class="card-body p-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th style="width: 10px">#</th>
+                          <th>Background Image</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $q = "SELECT * from admin_homebg WHERE admin_id=$admin_id";
+                        $r = mysqli_query($db, $q);
+                        $c = 1;
+                        while ($pi = mysqli_fetch_array($r)) {
                           ?>
-                        </tbody>
-                      </table>
-                    </div>
+                          <tr>
+                            <td>
+                              <?= $c ?>
+                            </td>
+                            <td>
+                              <img src="../images/<?= $pi['background_img'] ?>" style="height: 170px; width: 200px;">
+                            </td>
+                          </tr>
+                          <?php
+                          $c++;
+                        }
+                        ?>
+                      </tbody>
+                    </table>
                   </div>
-                  <!-- form start -->
-                  <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
-                    <div class="card-body">
-                      <div class="form-group ">
-                        <label for="exampleInputEmail1">Choose Background Image</label>
-                        <div class="input-container">
-                          <input type="file" class="form-control" name="background" required>
-                          <i class="fas fa-image icon"></i>
-                        </div>
+                </div>
+                <!-- form start -->
+                <form role="form" action="include/adminConfig.php" method="post" enctype="multipart/form-data">
+                  <div class="card-body">
+                    <div class="form-group ">
+                      <label for="exampleInputEmail1">Choose Background Image</label>
+                      <div class="input-container">
+                        <input type="file" class="form-control" name="background" required>
+                        <i class="fas fa-image icon"></i>
                       </div>
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                      <?php
-                      $query = "SELECT * FROM admin_homebg WHERE admin_id = $admin_id";
-                      $result = mysqli_query($db, $query);
-                      $row_count = mysqli_num_rows($result);
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <?php
+                    $query = "SELECT * FROM admin_homebg WHERE admin_id = $admin_id";
+                    $result = mysqli_query($db, $query);
+                    $row_count = mysqli_num_rows($result);
 
-                      if ($row_count == 0) {
-                        echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
-                      } else {
-                        echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
-                      }
-                      ?>
-                    </div>
-                  </form>
-                </div>
-
+                    if ($row_count == 0) {
+                      echo '<button type="submit" name="add-background" class="btn btn-primary">Add Background</button>';
+                    } else {
+                      echo '<button type="submit" name="update-background" class="btn btn-primary">Save Changes</button>';
+                    }
+                    ?>
+                  </div>
+                </form>
               </div>
+
               <?php
             } elseif (isset($_GET['homesetting'])) {
               ?>
@@ -358,7 +361,7 @@ if (!$admin_data) {
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
-                    <button type="submit" name="update-home" class="btn btn-primary">Save Changes</button>';
+                    <button type="submit" name="update-home" class="btn btn-primary">Save Changes</button>
                   </div>
                 </form>
               </div>
@@ -543,15 +546,15 @@ if (!$admin_data) {
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputPassword1">About Description</label><br>
-                        <textarea cols="50" name="about_desc" required></textarea>
+                        <textarea cols="50"  class="form-control" name="about_desc" required></textarea>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputPassword1">Mision</label><br>
-                        <textarea cols="50" name="mission" required></textarea>
+                        <textarea cols="50" class="form-control" name="mission" required></textarea>
                       </div>
                       <div class="form-group ">
                         <label for="exampleInputPassword1">Vision</label><br>
-                        <textarea cols="50" name="vision" required></textarea>
+                        <textarea cols="50" class="form-control" name="vision" required></textarea>
                       </div>
                     </div>
                     <div class="card-footer">
@@ -644,7 +647,7 @@ if (!$admin_data) {
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Description</label><br>
-                          <textarea cols="50" name="Description" required></textarea>
+                          <textarea cols="50" class="form-control" name="Description" required></textarea>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Developer's Image</label>
@@ -684,7 +687,7 @@ if (!$admin_data) {
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Description</label><br>
-                          <textarea cols="50" name="Description" required></textarea>
+                          <textarea cols="50" class="form-control" name="Description" required></textarea>
                         </div>
                         <div class="form-group ">
                           <label for="exampleInputEmail1">Developer's Image</label>

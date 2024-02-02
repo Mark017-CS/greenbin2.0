@@ -76,14 +76,17 @@ if (!$user_data) {
       transform: translateY(-50%);
       pointer-events: none;
     }
+
+    .content {
+      margin-top: 60px;
+    }
   </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -99,7 +102,7 @@ if (!$user_data) {
         </li>
       </ul>
     </nav>
-    <!-- /.navbar -->
+
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -123,13 +126,14 @@ if (!$user_data) {
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info" style="justify-content: center; align-items: center; text-align: center;">
             <a href="portfolio.php?user_id=<?= $user_id ?>" class="d-block" style="font-style: italic;">
-              User ID: <?= $user_id ?>
+              User ID:
+              <?= $user_id ?>
             </a>
           </div>
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">       
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
               <a href="account.php?accountsetting=true"
                 class="nav-link <?php echo isset($_GET['accountsetting']) ? 'active' : ''; ?>">
@@ -149,89 +153,101 @@ if (!$user_data) {
     </aside>
 
     <div class="content-wrapper">
-  <br>
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <?php if (isset($_GET['accountsetting'])): ?>
-          <div class="card card-primary col-lg-12">
-            <div class="card-header">
-              <h3 class="card-title">Manage Account</h3>
-            </div>
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Account</h3>
-              </div>
-              <div class="card-body p-0">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>User ID</th>
-                      <th>Fullname</th>
-                      <th>Email</th>
-                      <th>Password</th>
-                      <th>Profile</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $q = "SELECT * FROM user WHERE user_id = $user_id";
-                    $r = mysqli_query($db, $q);
-                    while ($pi = mysqli_fetch_array($r)): ?>
-                      <tr>
-                        <td><?= $pi['user_id'] ?></td>
-                        <td><?= $pi['fullname'] ?></td>
-                        <td><?= $pi['email'] ?></td>
-                        <td><?= $pi['password'] ?></td>
-                        <td><img src="../images/<?= $pi['user_profile'] ?>" style="height: 70px; width: 100px;"></td>
-                      </tr>
-                    <?php endwhile; ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
-              <div class="card-body">
-                <div class="form-group col-6">
-                  <label for="exampleInputEmail1">Profile Picture</label>
-                  <div class="input-container">
-                    <input type="file" class="form-control" name="profilepic" required>
-                    <i class="fas fa-image icon"></i>
+      <br>
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <?php if (isset($_GET['accountsetting'])): ?>
+              <div class="card card-primary col-lg-12">
+                <div class="card-header">
+                  <h3 class="card-title">Manage Account</h3>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Account</h3>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>User ID</th>
+                            <th>Fullname</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Profile</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $q = "SELECT * FROM user WHERE user_id = $user_id";
+                          $r = mysqli_query($db, $q);
+                          while ($pi = mysqli_fetch_array($r)): ?>
+                            <tr>
+                              <td>
+                                <?= $pi['user_id'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['fullname'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['email'] ?>
+                              </td>
+                              <td>
+                                <?= $pi['password'] ?>
+                              </td>
+                              <td><img src="../images/<?= $pi['user_profile'] ?>" style="height: 70px; width: 100px;"></td>
+                            </tr>
+                          <?php endwhile; ?>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group col-6">
-                  <label for="exampleInputEmail1">Full Name</label>
-                  <input type="text" class="form-control" name="fullname" required>
-                </div>
-                <div class="form-group col-6">
-                  <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" name="email" required>
-                </div>
-                <div class="form-group col-6">
-                  <label for="exampleInputEmail1">Password</label>
-                  <input type="text" class="form-control" name="password" required>
-                </div>
-              </div>
-              <div class="card-footer">
-                <?php
-                $query = "SELECT * FROM user WHERE user_id = $user_id";
-                $result = mysqli_query($db, $query);
-                $row_count = mysqli_num_rows($result);
+                <div class="card card-primary col-lg-12">
+                  <form role="form" action="../include/user.php" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Profile Picture</label>
+                        <div class="input-container">
+                          <input type="file" class="form-control" name="profilepic" required>
+                          <i class="fas fa-image icon"></i>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Full Name</label>
+                        <input type="text" class="form-control" name="fullname" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="text" class="form-control" name="password" required>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <?php
+                      $query = "SELECT * FROM user WHERE user_id = $user_id";
+                      $result = mysqli_query($db, $query);
+                      $row_count = mysqli_num_rows($result);
 
-                if ($row_count == 0) {
-                  echo '<button type="submit" name="add-account" class="btn btn-primary">Add User Details</button>';
-                } else {
-                  echo '<button type="submit" name="update-account" class="btn btn-primary">Save Changes</button>';
-                }
-                ?>
+                      if ($row_count == 0) {
+                        echo '<button type="submit" name="add-account" class="btn btn-primary">Add User Details</button>';
+                      } else {
+                        echo '<button type="submit" name="update-account" class="btn btn-primary">Save Changes</button>';
+                      }
+                      ?>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </form>
+            <?php endif; ?>
           </div>
-        <?php endif; ?>
-      </div>
+        </div>
+      </section>
     </div>
-  </section>
-</div>
 
     <footer class="main-footer">
       <strong>Copyright &copy; 2024 <a href="#">Group 1</a>.</strong>
