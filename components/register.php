@@ -93,14 +93,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 
 <body style="background-image: url('../images/bg.png'); background-size: cover; background-position: center;"
   class="hold-transition login-page">
+  <img
+          src="../images/logo.png"
+          alt="Green Bin"
+          style="width: 90px; height: 100px"
+        />
   <div class="register-box">
     <div class="register-logo">
     <a href="../index.php"
-          ><img
-          src="../images/logo.png"
-          alt="Green Bin"
-          style="width: 140px; height: 150px"
-        /><b style="color: #17ef63; font-weight: bold;">Green</b><b style="color: #FFF;">Bin</b></a
+          ><b style="color: #17ef63; font-weight: bold;">Green</b><b style="color: #FFF;">Bin</b></a
         >
     </div>
     <div class="card">

@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
     <img
           src="../images/logo.png"
           alt="Green Bin"
-          style="width: 140px; height: 150px"
+          style="width: 90px; height: 100px"
         />
     <!-- form section start -->
     <div class="login-box">

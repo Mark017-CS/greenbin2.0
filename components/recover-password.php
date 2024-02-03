@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <img
           src="../images/logo.png"
           alt="Green Bin"
-          style="width: 140px; height: 150px"
+          style="width: 90px; height: 100px"
         />
   <div class="login-box">
     <div class="login-logo">
