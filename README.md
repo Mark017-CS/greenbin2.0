@@ -21,7 +21,7 @@ ADMIN ACCOUNT:
 - password: admin123
 
 USER ACCOUNT
-- Register on the system to see the full functionalities of the syste.
+- Register on the system to see the full functionalities and other features of the system
 
 ## Authors
 - Advincula, Mark Angelo
