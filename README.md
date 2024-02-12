@@ -17,8 +17,8 @@ GreenBin is a groundbreaking software aimed at reducing food waste in food estab
 
 ## Website Accounts
 ADMIN ACCOUNT: 
-username: admin@gmail.com
-password: admin123
+- username: admin@gmail.com
+- password: admin123
 
 USER ACCOUNT
 - Register on the system to see the full functionalities of the syste.
